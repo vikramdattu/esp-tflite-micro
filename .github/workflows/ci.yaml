@@ -1,0 +1,30 @@
+# YAML schema for GitHub Actions:
+# https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions
+#
+# Helpful YAML parser to clarify YAML syntax:
+# https://yaml-online-parser.appspot.com/
+#
+#
+# This file contains the workflows that are run periodically to build the examples.
+
+name: CI
+
+on:
+  schedule:
+    # 1:30am UTC is 7am IST depending on daylight savings.
+    - cron: '30 13 * * *'
+
+  # Allow manually triggering of the workflow.
+  workflow_dispatch: {}
+
+jobs:
+  build_daily:
+    runs-on: ubuntu-latest
+    name: Build Examples
+
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'schedule' && github.repository == 'espressif/tflite-micro-esp-examples')
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/tfllite-micro-esp-examples@v1
