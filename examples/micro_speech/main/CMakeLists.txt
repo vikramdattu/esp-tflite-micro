@@ -8,8 +8,24 @@ idf_component_register(
          no_micro_features_data.cc yes_micro_features_data.cc
          model.cc recognize_commands.cc command_responder.cc
          micro_features_generator.cc micro_model_settings.cc ringbuf.c
-    PRIV_REQUIRES tflite-lib spi_flash driver esp_timer
+    PRIV_REQUIRES spi_flash driver esp_timer
     INCLUDE_DIRS "")
+
+set(target_name "${idf_target}")
+
+# Link against the static libraries
+target_link_libraries(${COMPONENT_LIB} PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}/libs/${target_name}/libtflite-lib.a"
+    "${CMAKE_CURRENT_SOURCE_DIR}/libs/${target_name}/libesp-nn.a"
+    )
+
+target_include_directories(${COMPONENT_LIB} PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}/libs"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../../components/tflite-lib/"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../../components/tflite-lib/third_party/gemmlowp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../../components/tflite-lib/third_party/kissfft"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../../components/tflite-lib/third_party/flatbuffers/include"
+    )
 
     # Reduce the level of paranoia to be able to compile sources
 target_compile_options(${COMPONENT_LIB} PRIVATE
