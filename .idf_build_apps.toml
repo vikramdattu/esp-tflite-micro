@@ -1,0 +1,6 @@
+target = "esp32 esp32s3 esp32p4"
+paths = "examples"
+recursive = false
+
+# build related options
+build_dir = "build_@t_@w"

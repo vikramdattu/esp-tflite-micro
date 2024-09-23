@@ -1,0 +1,62 @@
+name: Launchpad CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+
+  build:
+    strategy:
+      matrix:
+        idf_ver: ["release-v5.3"]
+    runs-on: ubuntu-latest
+    container: espressif/idf:${{ matrix.idf_ver }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+
+      - name: Action for Building and Uploading Binaries
+        uses: espressif/idf-examples-launchpad-ci-action@v1.0.1
+        with:
+          idf_version: ${{ matrix.idf_ver }}
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: built_files
+          path: binaries/
+
+  deploy:
+    needs: build
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download built files
+        uses: actions/download-artifact@v3
+        with:
+          name: built_files
+          path: binaries/
+
+      - name: Upload built files to gh pages
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: binaries/
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
