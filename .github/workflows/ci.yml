@@ -15,21 +15,14 @@ jobs:
   build:
     strategy:
       matrix:
-        idf_ver: ["release-v4.2", "release-v4.3", "release-v4.4", "release-v5.0", "release-v5.3"]
-        idf_target: ["esp32", "esp32s2", "esp32s3"]
-        exclude:
-          - idf_ver: "release-v4.2"
-            idf_target: esp32s2
-          - idf_ver: "release-v4.2"
-            idf_target: esp32s3
-          - idf_ver: "release-v4.3"
-            idf_target: esp32s3
+        idf_ver: ["release-v4.4", "release-v5.0", "release-v5.3"]
+        idf_target: ["esp32", "esp32s2", "esp32s3", "esp32c3"]
         include:
-          - idf_ver: "release-v4.4"
-            idf_target: "esp32c3"
           - idf_ver: "release-v5.0"
             idf_target: "esp32c2"
-    runs-on: ubuntu-22.04
+          - idf_ver: "release-v5.3"
+            idf_target: "esp32p4"
+    runs-on: ubuntu-latest
     container: espressif/idf:${{ matrix.idf_ver }}
     steps:
       - uses: actions/checkout@v1
