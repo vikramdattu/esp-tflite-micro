@@ -3,7 +3,7 @@ name: Launchpad CI
 on:
   push:
     branches:
-      - master
+      - launchpad_support
   pull_request:
     branches:
       - master
