@@ -15,11 +15,11 @@
 
 | Board | Example | Flash |
 |-------|---------|-------|
-| <img src="https://raw.githubusercontent.com/espressif/esp-who/master/docs/_static/get-started/ESP32-S3-EYE-isometric.png" alt="ESP32-S3-EYE" width="120"><br>ESP32-S3-EYE | Person Detection | [Flash Now](https://espressif.github.io/esp-launchpad/minimal-launchpad/?flashConfigURL=https://espressif.github.io/esp-tflite-micro/person_detection/esp32_s3_eye/launchpad.toml) |
+| <img src="https://raw.githubusercontent.com/espressif/esp-who/master/docs/_static/get-started/ESP32-S3-EYE-isometric.png" alt="ESP32-S3-EYE" width="120"><br>ESP32-S3-EYE | Person Detection | [Flash Now](https://espressif.github.io/esp-launchpad/minimal-launchpad/?flashConfigURL=https://vikramdattu.github.io/esp-tflite-micro/person_detection/esp32_s3_eye/launchpad.toml) |
 
 ### Try All Examples
 
-<a href="https://espressif.github.io/esp-launchpad/?flashConfigURL=https://espressif.github.io/esp-tflite-micro/launchpad.toml">
+<a href="https://espressif.github.io/esp-launchpad/?flashConfigURL=https://vikramdattu.github.io/esp-tflite-micro/launchpad.toml">
     <img alt="Try it with ESP Launchpad" src="https://espressif.github.io/esp-launchpad/assets/try_with_launchpad.png" width="250" height="70">
 </a>
 

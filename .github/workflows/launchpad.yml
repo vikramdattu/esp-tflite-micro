@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - feature/launchpad-integration
   workflow_dispatch:
 
 permissions:
@@ -96,7 +97,7 @@ jobs:
         run: |
           cat > deploy/launchpad.toml <<'TOML'
           esp_toml_version = 1.0
-          firmware_images_url = "https://espressif.github.io/esp-tflite-micro/"
+          firmware_images_url = "https://vikramdattu.github.io/esp-tflite-micro/"
           supported_apps = ["hello_world", "micro_speech", "person_detection"]
 
           [hello_world]
@@ -135,7 +136,7 @@ jobs:
           ["Person Detection: ESP32-S3-EYE"]
           icon = "https://raw.githubusercontent.com/espressif/esp-who/master/docs/_static/get-started/ESP32-S3-EYE-isometric.png"
           image.esp32-s3.parts = [
-            "https://espressif.github.io/esp-tflite-micro/person_detection_esp32s3.bin",
+            "https://vikramdattu.github.io/esp-tflite-micro/person_detection_esp32s3.bin",
           ]
           image.esp32-s3.addresses = [ "0x0" ]
           readme.text = "https://raw.githubusercontent.com/espressif/esp-tflite-micro/master/examples/person_detection/README.md"
